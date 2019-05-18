@@ -4,7 +4,7 @@ import sys, getopt
 # h - help
 # d - detect
 # c - clean
-from detect_clean import analize, clean
+from detect_clean import analyze, clean
 
 
 def print_help():
@@ -14,9 +14,9 @@ def print_help():
 def main(argv):
     sampleFile = ''
     try:
-        opts, remainder_args = getopt.getopt(argv, "hac", ["analize", "clean"])
+        opts, remainder_args = getopt.getopt(argv, "hac", ["analyze", "clean"])
     except getopt.GetoptError:
-        print 'usage >> analize.py -ac <sample_file>'
+        print 'usage >> analyze.py -ac <sample_file>'
         sys.exit(2)
 
     if remainder_args is None or len(remainder_args) != 1:
@@ -29,8 +29,8 @@ def main(argv):
     for opt, arg in opts:
         if opt == '-h':
             print_help
-        elif opt in ('-a', '--analize'):
-            analize(file_name)
+        elif opt in ('-a', '--analyze'):
+            analyze(file_name)
         elif opt in ('-c', '--clean'):
             clean(file_name)
         else:

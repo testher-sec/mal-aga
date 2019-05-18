@@ -1,26 +1,36 @@
 
-from detect_clean_sample3 import Sample3Analizer, Analizer
+from detect_clean_sample3 import Sample3Analyzer, Analyzer
 
-analizer_list =  {"sample3": Sample3Analizer(), "sample4" : Analizer()}
+analyzer_list =  {"sample3": Sample3Analyzer()} #, "sample4" : Analyzer()}
 
-def analize(file_name, analizer):
-    sample_clean = analizer.analize(file_name)
-    print '-->', analizer.name(), 'file name to analize... ', file_name, ' was clean ', sample_clean
-    return sample_clean
+def __analyze(file_name, analyzer):
+    dirty = analyzer.has_problem(file_name)
+    print '-->', analyzer.name(), '::file name to analyze... ', file_name, ' has a friend... ', dirty
+    return dirty
     # More to add
 
-def analize(file_name):
+def analyze(file_name):
     all_clean = True
-    for name, analizer in analizer_list.items():
-        sample_clean = analizer.analize(file_name)
-        all_clean = all_clean and sample_clean
-    print 'file name to analize... ', file_name, ' ALL CLEAN.... ', all_clean
+    for name, analyzer in analyzer_list.items():
+        sample_dirty = __analyze(file_name, analyzer)
+        if sample_dirty:
+            all_clean = False
+    print "--------> ", file_name, ' CLEAN....? ', all_clean
     # More to add
 
 
 def clean(file_name):
-    clean(file_name)
-    print 'all cleant'
+    all_clean = True
+    for name, analyzer in analyzer_list.items():
+        if analyzer.has_problem(file_name):
+            ok = __clean(file_name, analyzer)
+            all_clean = all_clean and ok
+    print "--------> ", file_name, ' ALL CLEAN.... ', all_clean
     return
+
+def __clean(file_name, analyzer):
+    ok = analyzer.clean(file_name)
+    print file_name , ' --> cleant from ... ', analyzer.name(), ' was ', ok
+    return ok
 
 
