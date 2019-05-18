@@ -30,7 +30,7 @@ def clean(file_name):
 
 def __clean(file_name, analyzer):
     ok = analyzer.clean(file_name)
-    print file_name , ' --> cleant from ... ', analyzer.name(), ' was ', ok
+    #print file_name , ' --> cleant from ... ', analyzer.name(), ' was ', ok
     return ok
 
 

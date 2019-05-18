@@ -12,7 +12,6 @@ def print_help():
 
 
 def main(argv):
-    sampleFile = ''
     try:
         opts, remainder_args = getopt.getopt(argv, "hac", ["analyze", "clean"])
     except getopt.GetoptError:
